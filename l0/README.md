@@ -1,6 +1,6 @@
 # First examples
 
-This is a place for storing early examples while learning Rust.
+This is a place for storing early examples while learning Rust. Most of these examples are inspired by HackerRank Problem-solving track.
 
 ## To compile
 
