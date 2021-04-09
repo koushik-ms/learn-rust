@@ -1,0 +1,4 @@
+tasks:
+  - init: 'echo "Switch to an example and build"'
+    command: 'echo "TODO: Replace with command to start project"'
+    
