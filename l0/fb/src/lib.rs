@@ -1,8 +1,9 @@
 fn fizzbuzz(x: u32) -> String {
-    if x == 15 { return "FizzBuzz".to_string(); }
-    if x%5 == 0 { return "Buzz".to_string(); }
-    if x%3 == 0 { return "Fizz".to_string(); }
-    x.to_string() 
+    let mut result = String::new();
+    if x%3 == 0 { result += "Fizz"; }
+    if x%5 == 0 { result += "Buzz"; }
+    if result.is_empty() { result = x.to_string(); }
+    result
 }
 
 #[cfg(test)]
