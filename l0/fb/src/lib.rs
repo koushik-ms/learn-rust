@@ -1,4 +1,8 @@
-fn fizzbuzz(x: u32) -> String { x.to_string() }
+fn fizzbuzz(x: u32) -> String { 
+    if x==5 { return "Buzz".to_string(); }
+    if x==3 { return "Fizz".to_string(); }
+    x.to_string() 
+}
 
 #[cfg(test)]
 mod tests {
@@ -14,5 +18,13 @@ mod tests {
     #[test]
     fn fizzbuzz_2_is_2() {
         assert_eq!("2", fizzbuzz(2));
+    }
+    #[test]
+    fn fizzbuzz_3_is_Fizz() {
+        assert_eq!("Fizz", fizzbuzz(3));
+    }
+    #[test]
+    fn fizzbuzz_5_is_Buzz() {
+        assert_eq!("Buzz", fizzbuzz(5));
     }
 }
