@@ -1,6 +1,6 @@
 fn fizzbuzz(x: u32) -> String { 
-    if x==5 { return "Buzz".to_string(); }
-    if x==3 { return "Fizz".to_string(); }
+    if x%5 == 0 { return "Buzz".to_string(); }
+    if x%3 == 0 { return "Fizz".to_string(); }
     x.to_string() 
 }
 
@@ -26,5 +26,13 @@ mod tests {
     #[test]
     fn fizzbuzz_5_is_Buzz() {
         assert_eq!("Buzz", fizzbuzz(5));
+    }
+    #[test]
+    fn fizzbuzz_6_is_Fizz() {
+        assert_eq!("Fizz", fizzbuzz(6));
+    }
+    #[test]
+    fn fizzbuzz_10_is_Buzz() {
+        assert_eq!("Buzz", fizzbuzz(10));
     }
 }
