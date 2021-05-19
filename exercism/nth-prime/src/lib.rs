@@ -7,19 +7,20 @@ fn is_prime(p: u32) -> bool {
     true
 }
 
-fn nxt_prime(x:u32) -> u32 {
-    let mut p = x+1;
+fn nxt_prime(x: &mut u32) {
+    let mut p = *x+1;
     loop {
         if is_prime(p) { break; }
         p += 1;
     }
-    p
+    *x=p
 }
 pub fn nth(n: u32) -> u32 {
     let mut ans: u32 = 1;
-    for _ in 0..=n {
-        ans = nxt_prime(ans);
-    }
-    ans
+    let mut ps = std::iter::from_fn(|| {
+        nxt_prime(&mut ans);
+        Some(ans)
+    });
+    ps.nth(n as usize).unwrap()
 }
 
