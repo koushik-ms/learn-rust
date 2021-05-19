@@ -1,7 +1,8 @@
 
 fn is_prime(p: u32) -> bool {
     if p < 3 {return true;}
-    for i in 2..=(p/2) {
+    let l = ((p as f64).sqrt()) as u32;
+    for i in 2..=l {
         if p%i == 0 {return false;}
     }
     true
@@ -9,10 +10,7 @@ fn is_prime(p: u32) -> bool {
 
 fn nxt_prime(x: &mut u32) -> u32 {
     *x += 1;
-    loop {
-        if is_prime(*x) { break; }
-        *x += 1;
-    }
+    while !is_prime(*x) { *x += 1; }
     *x
 }
 
