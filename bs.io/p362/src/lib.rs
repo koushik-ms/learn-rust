@@ -1,12 +1,6 @@
 fn solve(s: &str) -> bool { 
-    let n = s.len();
     let b = s.as_bytes();
-    for i in 1..n {
-        if b[i] == b[i-1] {
-            return false;
-        }
-    }
-    true
+    !(1..s.len()).any(|i| b[i]==b[i-1])
  }
 
 #[cfg(test)]
