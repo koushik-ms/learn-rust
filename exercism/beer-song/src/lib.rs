@@ -25,10 +25,9 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    let mut ans = verse(start);
-    for x in (end..start).rev() {
-        ans = format!("{}\n{}", ans, verse(x));
-    }
-    ans
+    (end..=start).rev()
+        .map(verse)
+        .collect::<Vec<_>>()
+        .join("\n")
 }
 
