@@ -1,20 +1,12 @@
-pub trait Sq {
-    fn sq(self) -> Self;
-}
-
-impl Sq for u32 {
-    fn sq(self: u32) -> u32 { self*self }
-}
-
 pub fn square_of_sum(n: u32) -> u32 {
     (1..=n)
         .sum::<u32>()
-        .sq()
+        .pow(2)
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
     (1..=n)
-        .map(Sq::sq)
+        .map(|x| x.pow(2))
         .sum()
 }
 
