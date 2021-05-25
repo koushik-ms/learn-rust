@@ -1,14 +1,19 @@
 use std::cmp::max;
 
 fn solve(n: &[i32]) -> i32 { 
-    match n.len() {
-        0 => 0,
-        1 => max(0, n[0]),
-        _ => max(
-            0,
-            max(n[0]+solve(&n[2..]), solve(&n[1..]))
-        ),
+    let l = n.len();
+    let mut ans = Vec::with_capacity(l+1);
+    for i in 0..=l {
+        match i {
+            0 => ans.push(0),
+            1 => ans.push(max(0, n[0])),
+            _ => ans.push(max(
+                0,
+                max(ans[i-2] + n[i-1], ans[i-1])
+            )),
+        };
     }
+    ans[l]
 }
 
 #[cfg(test)]
