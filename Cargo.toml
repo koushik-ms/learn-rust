@@ -1,0 +1,2 @@
+[workspace]
+members = ["exercism/*", "bs.io/*"]
