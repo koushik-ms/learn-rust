@@ -6,7 +6,6 @@ fn no_multiples_within_limit() {
 }
 
 #[test]
-#[ignore]
 fn one_factor_has_multiples_within_limit() {
     assert_eq!(3, sum_of_multiples(4, &[3, 5]))
 }
