@@ -40,3 +40,14 @@ board = [
 ]
 ```
 
+## Notes
+
+Notes about implementation
+
+### Run tests with output (from print! etc)
+
+Use the `--nocapture` flag as outlined [here](https://medium.com/@ericdreichert/how-to-print-during-rust-tests-619bdc7ccebc)
+
+```bash
+$ cargo test -- --nocapture
+```
