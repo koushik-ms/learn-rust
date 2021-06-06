@@ -67,10 +67,15 @@ mod tests {
         let start = "004509000500100048090020560000030016340010025720060000059040070270001003000702600";
         let expected = "164589237532176948897423561985234716346917825721865394659348172278691453413752689";
 
-        // Prepare board
         let board = make_board(start);
-        println!("{:?}", board);
-        println!("{:?}", board[0][0]);
+        assert_eq!(solve(board), make_board(expected));
+    }
+    #[test]
+    fn can_solve_another() {
+        let start = "020501090800203006030060070001000600540000019002000700090030080200804007010907060";
+        let expected = "426571398857293146139468275971385624543726819682149753794632581265814937318957462";
+
+        let board = make_board(start);
         assert_eq!(solve(board), make_board(expected));
     }
 }
