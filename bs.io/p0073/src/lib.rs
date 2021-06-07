@@ -51,11 +51,13 @@ mod tests {
     fn make_board(rep: &str) -> Vec<Vec<u8>> {
         rep.as_bytes()
             .chunks(9)
-            .map( |x| {
-                x.into_iter()
-                    .map(|&z| z - ('0' as u8))
-                    .collect::<Vec<_>>()
-            })
+            .map(make_row)
+            .collect()
+    }
+
+    fn make_row(x: &[u8]) -> Vec<u8> {
+        x.iter()
+            .map(|&z| z - ('0' as u8))
             .collect()
     }
     #[test]
