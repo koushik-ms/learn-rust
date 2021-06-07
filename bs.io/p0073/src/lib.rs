@@ -49,18 +49,14 @@ mod tests {
     }
 
     fn make_board(rep: &str) -> Vec<Vec<u8>> {
-        let rb = rep.as_bytes();
-        let mut board = vec![];
-        for i in 0..9 {
-            let mut r = vec![];
-            for j in 0..9 {
-                r.push(
-                    (rb[i*9+j] as u8) - ('0' as u8)
-                );
-            }
-            board.push(r);
-        }
-        board
+        rep.as_bytes()
+            .chunks(9)
+            .map( |x| {
+                x.into_iter()
+                    .map(|&z| z - ('0' as u8))
+                    .collect::<Vec<_>>()
+            })
+            .collect()
     }
     #[test]
     fn can_solve_puzzle() {
