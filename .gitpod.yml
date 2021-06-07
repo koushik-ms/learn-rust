@@ -1,4 +1,4 @@
 tasks:
-  - init: 'echo "Switch to an example and build"'
+  - init: cargo build
     command: 'echo "TODO: Replace with command to start project"'
     
