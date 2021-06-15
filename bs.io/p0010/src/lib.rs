@@ -1,10 +1,12 @@
 use std::iter::successors;
 
+const BOUND: u32 = 1_000_000_000 + 7;
+
 #[allow(dead_code)]
 fn solve(n:usize) -> u32 {
     successors(
         Some((1u32,1u32)), 
-        |&(b, a)| Some((b+a, b))
+        |&(b, a)| Some(((b+a)%BOUND, b))
     ).nth(n-1).unwrap().0
 }
 #[cfg(test)]
@@ -33,5 +35,9 @@ mod tests {
     #[test]
     fn climb_6_steps_in_13_ways() {
         assert_eq!(solve(6), 13);
+    }
+    #[test]
+    fn climb_417_steps_in_430965194_ways() {
+        assert_eq!(solve(417), 430965194);
     }
 }

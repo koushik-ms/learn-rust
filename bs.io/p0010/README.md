@@ -8,6 +8,8 @@ There's a staircase with `n` steps. You can climb either 1 or 2 steps at a time.
 
 The order of single and double steps matters. So, e.g., a double-step followed by a single step is different from a double step preceded by a single step.
 
+Mod the result to 10**9+7
+
 ## Examples
 
 **Input**
