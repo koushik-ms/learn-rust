@@ -1,12 +1,11 @@
 use std::iter::successors;
 
 #[allow(dead_code)]
-fn solve(n:u32) -> u32 {
-    let fib = successors(
+fn solve(n:usize) -> u32 {
+    successors(
         Some((1u32,1u32)), 
         |&(b, a)| Some((b+a, b))
-    );
-    fib.take(n as usize).last().unwrap().0
+    ).nth(n-1).unwrap().0
 }
 #[cfg(test)]
 mod tests {
