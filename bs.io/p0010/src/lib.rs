@@ -1,19 +1,16 @@
+use std::iter::successors;
+
 #[allow(dead_code)]
-fn solve(n: u32) -> u32 { 
-    match n {
-        0 => 0,
-        1 => 1,
-        2 => 2,
-        _ => solve(n-1) + solve(n-2),
-    } 
+fn solve(n:u32) -> u32 {
+    let fib = successors(
+        Some((1u32,1u32)), 
+        |(b, a)| Some((*b+*a, *b))
+    );
+    fib.take(n as usize).last().unwrap().0
 }
 #[cfg(test)]
 mod tests {
     use super::solve;
-    #[test]
-    fn climb_0_steps_in_0_ways() {
-        assert_eq!(solve(0), 0);
-    }
     #[test]
     fn climb_1_steps_in_1_ways() {
         assert_eq!(solve(1), 1);
