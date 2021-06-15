@@ -1,4 +1,4 @@
-# Rotation of another string
+# Sudoku Solver
 
 This is problem #73 found at https://binarysearch.com/problems/Sudoku-Solver
 
