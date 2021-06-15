@@ -4,7 +4,7 @@ use std::iter::successors;
 fn solve(n:u32) -> u32 {
     let fib = successors(
         Some((1u32,1u32)), 
-        |(b, a)| Some((*b+*a, *b))
+        |&(b, a)| Some((b+a, b))
     );
     fib.take(n as usize).last().unwrap().0
 }
