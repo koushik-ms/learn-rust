@@ -28,3 +28,25 @@ With 4 steps in the staircase, it can be climed in the following ways:
 2,2 => visit step 2, 4
 ```
 
+
+**Input**
+```
+n = 5
+```
+
+**Output**
+```
+8
+```
+With 4 steps in the staircase, it can be climed in the following ways:
+```
+1,1,1,1,1 => visit step 1, 2, 3, 4, 5
+1,1,1,2 => visit step 1, 2, 3, 5
+1,1,2,1 => visit step 1, 2, 4, 5
+1,2,1,1 => visit step 1, 3, 4, 5
+2,1,1,1 => visit step 2, 3, 4, 5
+2,2,1 => visit step 2, 4, 5
+2,1,2 => visit step 2, 3, 5
+1,2,2 => visit step 1, 3, 5
+```
+
