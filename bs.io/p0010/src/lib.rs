@@ -13,7 +13,7 @@ fn solve(n:usize) -> u32 {
 mod tests {
     use super::solve;
     #[test]
-    fn climb_1_steps_in_1_ways() {
+    fn climb_1_step_in_1_way() {
         assert_eq!(solve(1), 1);
     }
     #[test]
