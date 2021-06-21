@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn solve(s: &str) -> bool { 
     let b = s.as_bytes();
     !(1..s.len()).any(|i| b[i]==b[i-1])

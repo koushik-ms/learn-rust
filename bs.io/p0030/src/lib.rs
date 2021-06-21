@@ -1,3 +1,4 @@
+#[allow(dead_code)]
 fn solve(s0: &str, s1: &str) -> bool {
     (s0.to_owned() + s0).contains(s1)
 }

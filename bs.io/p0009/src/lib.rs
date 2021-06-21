@@ -1,5 +1,6 @@
 use std::cmp::max;
 
+#[allow(dead_code)]
 fn solve(n: &[i32]) -> i32 { 
     let l = n.len();
     let mut ans = Vec::with_capacity(l+1);
