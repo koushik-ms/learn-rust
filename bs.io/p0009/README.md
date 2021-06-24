@@ -1,4 +1,4 @@
-# Rotation of another string
+# Largest Sum of Non-Adjacent Numbers
 
 This is problem #9 found at https://binarysearch.com/problems/Largest-Sum-of-Non-Adjacent-Numbers
 
