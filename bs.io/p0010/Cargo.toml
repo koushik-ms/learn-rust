@@ -1,5 +1,5 @@
 [package]
-name = "p0010"
+name = "a_flight_of_stairs"
 version = "0.1.0"
 authors = ["koushik-ms <koushik.ms@gmail.com>"]
 edition = "2018"

@@ -1,5 +1,5 @@
 [package]
-name = "p0009"
+name = "largest_sum_of_non_adjacent_numbers"
 version = "0.1.0"
 authors = ["koushik-ms <koushik.ms@gmail.com>"]
 edition = "2018"

@@ -1,5 +1,5 @@
 [package]
-name = "p0030"
+name = "rotation_of_another_string"
 version = "0.1.0"
 authors = ["koushik-ms <koushik.ms@gmail.com>"]
 edition = "2018"

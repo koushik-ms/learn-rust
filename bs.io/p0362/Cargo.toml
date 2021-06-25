@@ -1,9 +1,7 @@
 [package]
-name = "p362"
+name = "odd_palindrome"
 version = "0.1.0"
 authors = ["koushik-ms <koushik.ms@gmail.com>"]
 edition = "2018"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
