@@ -1,14 +1,20 @@
 struct CustomStack {
-    the: Vec<i32>,
-    inc: i32
+    the: Vec<(i32,i32)>
 }
 
 #[allow(dead_code)]
 impl CustomStack {
-    fn new(_max_size: i32) -> Self { CustomStack{ the: vec![], inc: 0 } }
-    fn push(& mut self, value: i32) { self.the.push(value) }
-    fn pop(& mut self) -> i32 { self.the.pop().unwrap() + self.inc }
-    fn inc(& mut self, _extent: i32, value: i32) { self.inc = value; }
+    fn new(_max_size: i32) -> Self { CustomStack{ the: vec![] } }
+    fn push(& mut self, value: i32) { self.the.push((value, 0)) }
+    fn pop(& mut self) -> i32 { 
+        let (v, i) = self.the.pop().unwrap(); 
+        if !self.the.is_empty() { 
+            let a = self.the.len() - 1; 
+            self.the[a].1 += i;
+        }
+        v+i 
+    }
+    fn inc(& mut self, extent: i32, value: i32) { self.the[extent as usize-1].1 += value; }
 }
 #[cfg(test)]
 mod tests {
@@ -52,12 +58,36 @@ mod tests {
             assert_eq!(*j+inc, ret_2);
         }
     }
+    #[test]
+    fn can_apply_inc_to_some_items() {
+        let items_to_increment = vec![2, 3, 4];
+        let incd_size = 3;
+        let inc = 42;
+        let additional_items = vec![5, 6];
+        let addl_size = 2;
+        let mut obj = CustomStack::new(incd_size + addl_size);
+        for i in items_to_increment.iter() {
+            obj.push(*i);
+        }
+        obj.inc(incd_size, inc);
+        for i in additional_items.iter() {
+            obj.push(*i);
+        }
+        for j in additional_items.iter().rev() {
+            let ret_2: i32 = obj.pop();
+            assert_eq!(*j, ret_2);
+        }
+        for j in items_to_increment.iter().rev() {
+            let ret_2: i32 = obj.pop();
+            assert_eq!(*j+inc, ret_2);
+        }
+    }
 }
 
 /*
 Test list
 ✔️ create a stack (push and pop)
-create stack, push apply inc to all and pop
+✔️ create stack, push apply inc to all and pop
 create stack, push apply inc to some elements and pop
 push, apply inc to full stack, push more, pop
 push, apply inc twice (with diff extents)
