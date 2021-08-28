@@ -18,7 +18,7 @@ mod tests {
     #[test]
     fn can_create_custom_stack() {
         let x = 42;
-        let mut obj = CustomStack::new(1);
+        let mut obj = CustomStack::new(3);
         obj.push(x);
         let ret_2: i32 = obj.pop();
         assert_eq!(x, ret_2);
@@ -26,7 +26,7 @@ mod tests {
     #[test]
     fn can_push_and_pop_many() {
         let x = vec![2, 3, 4];
-        let mut obj = CustomStack::new(1);
+        let mut obj = CustomStack::new(3);
         for i in x.iter() {
             obj.push(*i);
         }
@@ -39,7 +39,7 @@ mod tests {
 
 /*
 Test list
-create a stack (push and pop)
+✔️ create a stack (push and pop)
 create stack, push apply inc to all and pop
 create stack, push apply inc to some elements and pop
 push, apply inc to full stack, push more, pop
