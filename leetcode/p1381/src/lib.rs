@@ -1,30 +1,36 @@
 use std::cmp::min;
 struct CustomStack {
     the: Vec<(i32,i32)>,
+    cur_size: usize,
     max_size: usize
 }
 
 #[allow(dead_code)]
 impl CustomStack {
-    fn new(max_size: i32) -> Self { 
-        CustomStack{ the: vec![], max_size: max_size as usize } 
+    fn new(max_size: i32) -> Self {
+        CustomStack{ 
+            the: vec![(0,0); max_size as usize], 
+            cur_size: 0, 
+            max_size: max_size as usize 
+        } 
     }
     fn push(& mut self, value: i32) { 
-        if self.the.len() < self.max_size {
-            self.the.push((value, 0)) 
+        if self.cur_size < self.max_size {
+            self.the[self.cur_size]  = (value, 0);
+            self.cur_size += 1;
         }
     }
     fn pop(& mut self) -> i32 { 
-        if self.the.is_empty() { return -1 }
-        let (v, i) = self.the.pop().unwrap(); 
-        if !self.the.is_empty() { 
-            let a = self.the.len() - 1; 
-            self.the[a].1 += i;
+        if self.cur_size <= 0 { return -1 }
+        self.cur_size -= 1;
+        let (v, i) = self.the[self.cur_size];
+        if self.cur_size > 0 {
+            self.the[self.cur_size-1].1 += i;
         }
         v+i 
     }
-    fn inc(& mut self, extent: i32, value: i32) { 
-        let extent = min(extent as usize, self.the.len());
+    fn increment(& mut self, extent: i32, value: i32) { 
+        let extent = min(extent as usize, self.cur_size);
         if extent > 0 {
             self.the[extent as usize-1].1 += value; 
         }
@@ -66,7 +72,7 @@ mod tests {
         for i in x.iter() {
             obj.push(*i);
         }
-        obj.inc(size, inc);
+        obj.increment(size, inc);
         for j in x.iter().rev(){
             let ret_2: i32 = obj.pop();
             assert_eq!(*j+inc, ret_2);
@@ -83,7 +89,7 @@ mod tests {
         for i in items_to_increment.iter() {
             obj.push(*i);
         }
-        obj.inc(incd_size, inc);
+        obj.increment(incd_size, inc);
         for i in additional_items.iter() {
             obj.push(*i);
         }
@@ -106,7 +112,7 @@ mod tests {
         for i in items_to_increment.iter() {
             obj.push(*i);
         }
-        obj.inc(5, inc);
+        obj.increment(5, inc);
         for j in items_to_increment.iter().rev() {
             let ret_2: i32 = obj.pop();
             assert_eq!(*j+inc, ret_2);
@@ -124,8 +130,8 @@ mod tests {
         for i in [2, 3, 4].iter() {
             obj.push(*i);
         }
-        obj.inc(5, 100);
-        obj.inc(2, 100);
+        obj.increment(5, 100);
+        obj.increment(2, 100);
         for j in [103, 202, 201, -1].iter() {
             assert_eq!(*j, obj.pop());
         }
@@ -136,15 +142,15 @@ mod tests {
         let mut obj = CustomStack::new(size);
         obj.push(34);
         assert_eq!(34, obj.pop());
-        obj.inc(8, 100);
+        obj.increment(8, 100);
         assert_eq!(-1, obj.pop());
-        obj.inc(9, 91);
+        obj.increment(9, 91);
         obj.push(63);
         assert_eq!(63, obj.pop());
         obj.push(84);
-        obj.inc(10, 93);
-        obj.inc(6, 45);
-        obj.inc(10, 4);
+        obj.increment(10, 93);
+        obj.increment(6, 45);
+        obj.increment(10, 4);
     }
     /*
     ["CustomStack","push","pop","increment","pop","increment","push","pop","push","increment","increment","increment"]
