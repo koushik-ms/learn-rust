@@ -1,7 +1,17 @@
+#[allow(dead_code)]
+fn split_into_palindromes(_s: &str) -> u32 { 1 }
+
 #[cfg(test)]
 mod tests {
+    use super::split_into_palindromes;
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn racecar_splits_into_1_palindrome() {
+        let s = "racecar";
+        assert_eq!(split_into_palindromes(s), 1);
+    }
+    #[test]
+    fn annaracecar_splits_into_1_palindrome() {
+        let s = "annaracecar";
+        assert_eq!(split_into_palindromes(s), 2);
     }
 }
