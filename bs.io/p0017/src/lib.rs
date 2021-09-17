@@ -49,4 +49,10 @@ mod tests {
         println!("{:?}", m);
         assert_eq!(traverse(&m), 2);
     }
+    #[test]
+    fn traverse_0001_0001_1000_in_5_ways() {
+        let m = maze("0001,0001,1000");
+        println!("{:?}", m);
+        assert_eq!(traverse(&m), 5);
+    }
 }
