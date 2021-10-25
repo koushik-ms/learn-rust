@@ -10,22 +10,29 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check_build:
-    name: Check build
+  check_triggers:
+    name: Check presence of trigger-words
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
-
+    outputs:
+      rebuild: ${{ steps.rebuild.ouputs.rebuild }}
+      retest: ${{ steps.retest.outputs.retest }}
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
+    - name: Print comment body
       run: |
         echo ${{ github.event.comment.body }}
-
-  check_test:
-
+    - name: Check if rebuild is requested
+      id: rebuild
+      if: ${{ github.event.comment.body == 'rebuild'}}
+      run: echo "::set-output name=rebuild::true"
+    - name: Check if retest is requested
+      id: retest
+      if: ${{ github.event.comment.body == 'retest'}}
+      run: echo "::set-output name=retest::true"
+  summarize_triggers:
+    name: Summarize results of checking trigger-words
     runs-on: ubuntu-latest
-
+    needs: check_triggers
     steps:
-    - uses: actions/checkout@v2
-    - name: Run tests
-      run: echo "PR = ${{ github.event.issue.pull_request }}"
+      - name: Print selections
+        run: echo "Rebuild = ${{ needs.check_triggers.output.rebuild }}; Retest = ${{ needs.check_triggers.output.retest }} "
