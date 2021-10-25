@@ -1,0 +1,31 @@
+name: Check PR Comment
+
+on:
+  issue_comment:
+    types:
+      - "created"
+      - "edited"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check_build:
+    name: Check build
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        echo ${{ github.event.comment.body }}
+
+  check_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run tests
+      run: echo "PR = ${{ github.event.issue.pull_request }}"
