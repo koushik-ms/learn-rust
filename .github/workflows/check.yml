@@ -24,15 +24,19 @@ jobs:
     - name: Check if rebuild is requested
       id: rebuild
       if: ${{ github.event.comment.body == 'rebuild'}}
-      run: echo "::set-output name=rebuild::true"
+      run: |
+        echo "::set-output name=rebuild::true"
+        echo "::set-output name=retest::false"
     - name: Check if retest is requested
       id: retest
       if: ${{ github.event.comment.body == 'retest'}}
-      run: echo "::set-output name=retest::true"
+      run: |
+        echo "::set-output name=rebuild::false"
+        echo "::set-output name=retest::true"
   summarize_triggers:
     name: Summarize results of checking trigger-words
     runs-on: ubuntu-latest
     needs: check_triggers
     steps:
       - name: Print selections
-        run: echo "Rebuild = ${{ needs.check_triggers.output.rebuild }}; Retest = ${{ needs.check_triggers.output.retest }} "
+        run: echo "Rebuild = ${{ needs.check_triggers.outputs.rebuild }}; Retest = ${{ needs.check_triggers.outputs.retest }} "
