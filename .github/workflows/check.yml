@@ -31,6 +31,8 @@ jobs:
       if: ${{ github.event.comment.body == 'retest'}}
       run: |
         echo "::set-output name=retest::true"
+    - name: Print selections
+      run: echo "Rebuild = ${{ steps.rebuild.ouputs.rebuild }}; Retest = {{ steps.retest.outputs.retest }}"
   summarize_triggers:
     name: Summarize results of checking trigger-words
     runs-on: ubuntu-latest
