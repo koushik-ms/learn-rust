@@ -15,7 +15,7 @@ mod tests {
         assert_eq!(split_into_palindromes(s), 1);
     }
     #[test]
-    fn annaracecar_splits_into_1_palindrome() {
+    fn annaracecar_splits_into_2_palindrome() {
         let s = "annaracecar";
         assert_eq!(split_into_palindromes(s), 2);
     }
