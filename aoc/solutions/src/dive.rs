@@ -1,40 +1,43 @@
 fn dive(s: &str) -> u32 {
     let a = s.lines();
-    let mut x:u32 = 0;
-    let mut y:u32 = 0;
+    let mut x: u32 = 0;
+    let mut y: u32 = 0;
     for step in a {
         let mut c = step.split(' ');
         let dir = c.next().unwrap();
         let dist = c.next().unwrap_or("0").parse::<u32>().unwrap();
         // println!("dir {}, dist {}", dir, dist);
         match dir {
-            "forward" => { x += dist },
-            "down"    => { y += dist },
-            "up"      => { y -= dist },
+            "forward" => x += dist,
+            "down" => y += dist,
+            "up" => y -= dist,
             _ => {}
         };
     }
-    x*y
+    x * y
 }
 
 fn jive(s: &str) -> i32 {
     let a = s.lines();
-    let mut x:i32 = 0;
-    let mut y:i32 = 0;
-    let mut aim:i32 = 0;
+    let mut x: i32 = 0;
+    let mut y: i32 = 0;
+    let mut aim: i32 = 0;
     for step in a {
         let mut c = step.split(' ');
         let dir = c.next().unwrap();
         let dist = c.next().unwrap_or("0").parse::<i32>().unwrap();
         match dir {
-            "forward" => { x += dist; y += aim*dist; },
-            "down"    => { aim += dist },
-            "up"      => { aim -= dist },
+            "forward" => {
+                x += dist;
+                y += aim * dist;
+            }
+            "down" => aim += dist,
+            "up" => aim -= dist,
             _ => {}
         };
         // println!("dir {}, dist {}, {} {} {}", dir, dist, x, y, aim);
     }
-    x*y
+    x * y
 }
 
 #[cfg(test)]
@@ -72,8 +75,8 @@ mod tests {
     }
 
     #[test]
-    fn jive_with_puzzle_input_is_900() {
+    fn jive_with_puzzle_input_is_the_answer() {
         let plan = include_str!("../inputs/day2.txt");
-        assert_eq!(jive(&plan), 900);
+        assert_eq!(jive(&plan), 1903644897);
     }
 }

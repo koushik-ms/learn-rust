@@ -16,8 +16,8 @@ fn tokenize_input(input: &str) -> Vec<u32> {
 
 fn slide(measurements: &[u32]) -> usize {
     let w: Vec<_> = measurements
-        .windows(3).
-        map(|x| x.iter().sum::<u32>())
+        .windows(3)
+        .map(|x| x.iter().sum::<u32>())
         .collect();
     sweep(&w)
 }
@@ -50,5 +50,12 @@ mod tests {
     fn slide_detects_5_increases() {
         let measurements = vec![199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
         assert_eq!(slide(&measurements), 5);
+    }
+
+    #[test]
+    fn slide_detects_n_increases() {
+        let s = include_str!("../inputs/day1.txt");
+        let measurements = tokenize_input(&s);
+        assert_eq!(slide(&measurements), 1608);
     }
 }
