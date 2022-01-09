@@ -1,6 +1,7 @@
+pub mod bingo;
 pub mod diag;
-mod dive;
-mod sweep;
+pub mod dive;
+pub mod sweep;
 fn main() {
     println!("Hello, world!");
 }
