@@ -1,20 +1,4 @@
 
-fn mfb(s: &str, pos: usize) -> char {
-    let (num_ones, num_zeroes) = count_ones_and_zeros(s, pos);
-    
-    if num_ones > num_zeroes {
-        return '1';
-    } else {
-        return '0';
-    }
-}
-
-fn count_ones_and_zeros(s: &str, pos: usize) -> (i32, i32) {
-    let num_ones= s.lines().filter(|line| line.chars().nth(pos) == Some('1')).count() as i32 ;
-    let num_zeroes= s.lines().filter(|line| line.chars().nth(pos) == Some('0')).count() as i32 ;
-    (num_ones, num_zeroes)
-}
-
 fn get_nums(s: &[&str], pos: usize) -> (i32, i32) {
     let num_ones= s.iter().filter(|line| line.chars().nth(pos) == Some('1')).count() as i32 ;
     let num_zeroes= s.iter().filter(|line| line.chars().nth(pos) == Some('0')).count() as i32 ;

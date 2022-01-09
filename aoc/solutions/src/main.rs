@@ -1,4 +1,4 @@
-mod diag;
+pub mod diag;
 mod dive;
 mod sweep;
 fn main() {
