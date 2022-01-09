@@ -1,7 +1,12 @@
-
 fn get_nums(s: &[&str], pos: usize) -> (i32, i32) {
-    let num_ones= s.iter().filter(|line| line.chars().nth(pos) == Some('1')).count() as i32 ;
-    let num_zeroes= s.iter().filter(|line| line.chars().nth(pos) == Some('0')).count() as i32 ;
+    let num_ones = s
+        .iter()
+        .filter(|line| line.chars().nth(pos) == Some('1'))
+        .count() as i32;
+    let num_zeroes = s
+        .iter()
+        .filter(|line| line.chars().nth(pos) == Some('0'))
+        .count() as i32;
     (num_ones, num_zeroes)
 }
 
@@ -11,9 +16,9 @@ fn diag(s: &str) -> u32 {
     let mut gfs = String::new();
     let mut efs = String::new();
     for i in 0..bits {
-        let (o,z) = get_nums(&inp, i);
-        gfs.push(if o>z {'1'} else { '0' });
-        efs.push(if o>z {'0'} else { '1' });
+        let (o, z) = get_nums(&inp, i);
+        gfs.push(if o > z { '1' } else { '0' });
+        efs.push(if o > z { '0' } else { '1' });
     }
     let gf = u32::from_str_radix(&gfs, 2).unwrap();
     let ef = u32::from_str_radix(&efs, 2).unwrap();
@@ -24,18 +29,38 @@ fn life_support(s: &str) -> u32 {
     let bits = s.lines().map(|line| line.len()).max().unwrap();
     let mut o2v = s.lines().collect::<Vec<_>>();
     for i in 0..bits {
-        let ov = o2v.iter().filter(|line| line.chars().nth(i) == Some('1')).map(|x| *x).collect::<Vec<_>>();
-        let zv = o2v.iter().filter(|line| line.chars().nth(i) == Some('0')).map(|x| *x).collect::<Vec<_>>();
+        let ov = o2v
+            .iter()
+            .filter(|line| line.chars().nth(i) == Some('1'))
+            .map(|x| *x)
+            .collect::<Vec<_>>();
+        let zv = o2v
+            .iter()
+            .filter(|line| line.chars().nth(i) == Some('0'))
+            .map(|x| *x)
+            .collect::<Vec<_>>();
         o2v = if ov.len() >= zv.len() { ov } else { zv };
-        if o2v.len() < 2 { break; }
+        if o2v.len() < 2 {
+            break;
+        }
     }
     // println!("O2 is {:?}", o2v);
     let mut co2 = s.lines().collect::<Vec<_>>();
     for i in 0..bits {
-        let ov = co2.iter().filter(|line| line.chars().nth(i) == Some('1')).map(|x| *x).collect::<Vec<_>>();
-        let zv = co2.iter().filter(|line| line.chars().nth(i) == Some('0')).map(|x| *x).collect::<Vec<_>>();
+        let ov = co2
+            .iter()
+            .filter(|line| line.chars().nth(i) == Some('1'))
+            .map(|x| *x)
+            .collect::<Vec<_>>();
+        let zv = co2
+            .iter()
+            .filter(|line| line.chars().nth(i) == Some('0'))
+            .map(|x| *x)
+            .collect::<Vec<_>>();
         co2 = if zv.len() <= ov.len() { zv } else { ov };
-        if co2.len() < 2 { break; }
+        if co2.len() < 2 {
+            break;
+        }
     }
     // println!("CO2 is {:?}", co2);
     let o2f = u32::from_str_radix(&o2v.first().unwrap(), 2).unwrap();
